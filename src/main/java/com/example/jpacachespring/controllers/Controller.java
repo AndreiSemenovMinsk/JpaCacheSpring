@@ -65,18 +65,19 @@ public class Controller {
             p1.setAge(i);
             parentJPARepository.save(p1);
 
-            //System.out.println(i + " p1*** " + p1);
             for (int j = 0; j < 10; j++) {
                 var c1 = new PersonDTO();
                 c1.setName("C" + j);
                 c1.setAge(j);
                 c1.setParentDTOId(p1.getId());
-                personJPARepository.save(c1);
-                //System.out.println(j + " c1@@@ " + c1);
+                //personJPARepository.save(c1);
+                p1.addPersonList(c1);
             }
+
+            parentJPARepository.save(p1);
         }
 
-        System.out.println("save time " + (System.currentTimeMillis() - start));
+        System.out.println("*save time " + (System.currentTimeMillis() - start));
     }
 
     @GetMapping("/perform1")
@@ -92,6 +93,7 @@ public class Controller {
             int finI = i;
             //executor.submit(() -> {
                 List<ParentDTO> parentss = parentJPARepository.findByNameAndAge("P" + finI, finI);
+
                 parentss.forEach(e -> {
                     try {
                         System.out.println("Achild  " + personJPARepository.findByParentDTOId(e.getId()));

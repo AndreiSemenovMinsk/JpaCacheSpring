@@ -3,6 +3,7 @@ package com.example.jpacachespring.aop.model;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import java.util.ArrayList;
 import java.util.List;
 
 //@Data
@@ -11,7 +12,7 @@ public class ParentDTO extends DTO {
     private String name;
     private Integer age;
     private String surname;
-    private List<PersonDTO> personList;
+    private List<PersonDTO> personList = new ArrayList<>();
 
     public void setName(String name) {
         this.name = name;
@@ -27,6 +28,14 @@ public class ParentDTO extends DTO {
 
     public Integer getAge() {
         return age;
+    }
+
+    public List<PersonDTO> getPersonList() {
+        return personList;
+    }
+
+    public void addPersonList(PersonDTO personList) {
+        this.personList.add(personList);
     }
 
     @Override
