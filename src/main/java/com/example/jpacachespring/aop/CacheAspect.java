@@ -156,7 +156,7 @@ public class CacheAspect {
                     int i = 0;
                     for (int declaredFieldInd = 0; declaredFieldInd < declaredFields.length; declaredFieldInd++) {
 
-                        if (!"List".equals(declaredFields[declaredFieldInd].getType().getSimpleName())) {
+                        //if (!"List".equals(declaredFields[declaredFieldInd].getType().getSimpleName())) {
 
                             var dtoFieldName = declaredFields[declaredFieldInd].getName();
                             a.add(dtoFieldName);
@@ -167,7 +167,7 @@ public class CacheAspect {
                             childDTOFieldParentFieldDTO.add(null);
                             childDTOFieldParentField.add(null);
                             i++;
-                        }
+                        //}
                     }
 
                     //repo - dto
