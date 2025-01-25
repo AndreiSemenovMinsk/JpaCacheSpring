@@ -96,8 +96,8 @@ public class Controller {
 
                 parentss.forEach(e -> {
                     try {
-                        System.out.println("Achild  " + personJPARepository.findByParentDTOId(e.getId()));
-                        //personJPARepository.findByParentDTOId(e.getId());
+                        //System.out.println("Achild  " + personJPARepository.findByParentDTOId(e.getId()));
+                        personJPARepository.findByParentDTOId(e.getId());
 
                         e.setId(finI);
 
@@ -105,8 +105,8 @@ public class Controller {
 
                         System.out.println("finI " + finI + " e.getId() " + e.getId());
 
-                        System.out.println("Bchild  " + personJPARepository.findByParentDTOId(e.getId()));
-                        //personJPARepository.findByParentDTOId(e.getId());
+                        //System.out.println("Bchild  " + personJPARepository.findByParentDTOId(e.getId()));
+                        personJPARepository.findByParentDTOId(e.getId());
                     } catch (Exception ex) {
                         ex.printStackTrace();
                     }

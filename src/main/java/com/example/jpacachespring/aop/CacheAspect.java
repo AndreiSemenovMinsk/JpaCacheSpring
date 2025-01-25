@@ -972,7 +972,7 @@ public class CacheAspect {
                 String[] newKeyArr = new String[parameter.length];
                 String[] oldKeyArr = new String[parameter.length];
 
-                System.out.println("@@@repoIndex " + repoIndex + " methodInd " + methodInd + " " +Arrays.toString(parameter));
+                System.out.println("save old @@@repoIndex " + repoIndex + " methodInd " + methodInd + " " +Arrays.toString(parameter));
                 //метод поиска find
                 for (int j = 0; j < parameter.length; j++) {
                     //порядок в мапе полей значений dto
