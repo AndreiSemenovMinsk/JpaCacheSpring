@@ -20,40 +20,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 public class Controller {
-    /*private final MyRepository myRepository;
-    private final MyService myService;
-    private final Jpa jpa;*/
+/*
     @Autowired
     private PersonJPARepository personJPARepository;
     @Autowired
     private ParentJPARepository parentJPARepository;
-
-    /*@Autowired
-    RedisTemplate<String, Object> redisTemplate;
-    @GetMapping("/set")
-    public String setKeyValue(@RequestParam String key, @RequestParam String value) {
-
-        System.out.println("key " + key + " value " + value);
-
-        long l = System.currentTimeMillis();
-        for (int i = 0; i < 1000; i++) {
-            redisTemplate.opsForValue().set(key + i, value + i);
-        }
-        System.out.println(System.currentTimeMillis() - l);
-        return "Key-Value pair saved!";
-    }
-
-    @GetMapping("/get")
-    public String getValue(@RequestParam String key) {
-        int s = 0;
-        long l = System.currentTimeMillis();
-        for (int i = 0; i < 1000; i++) {
-            s += redisTemplate.opsForValue().get(key + i).toString().length();
-        }
-        System.out.println(System.currentTimeMillis() - l);
-
-        return (String) redisTemplate.opsForValue().get(key + 235) + "++++++" + s;
-    }*/
 
     @GetMapping("/save")
     public void save() throws InterruptedException {
@@ -69,7 +40,7 @@ public class Controller {
                 var c1 = new PersonDTO();
                 c1.setName("C" + j);
                 c1.setAge(j);
-                c1.setParentDTOId(p1.getId());
+                //c1.setParentDTOId(p1.getId());
                 //personJPARepository.save(c1);
                 p1.addPersonList(c1);
             }
@@ -106,7 +77,9 @@ public class Controller {
                         System.out.println("finI " + finI + " e.getId() " + e.getId());
 
                         //System.out.println("Bchild  " + personJPARepository.findByParentDTOId(e.getId()));
-                        personJPARepository.findByParentDTOId(e.getId());
+                        var child = personJPARepository.findByParentDTOId(e.getId());
+
+                        personJPARepository.save(child.get(0));
                     } catch (Exception ex) {
                         ex.printStackTrace();
                     }
@@ -163,6 +136,35 @@ public class Controller {
         System.out.println(s);
         System.out.println(System.currentTimeMillis() - start);
     }
+
+
+
+    @GetMapping("/perform3")
+    public void performOperation3() throws InterruptedException {
+
+        long start = System.currentTimeMillis();
+        for (int i = 0; i < 1000; i++) {
+            var p1 = new ParentDTO();
+            p1.setName("P" + i);
+            p1.setAge(i);
+            parentJPARepository.save(p1);
+
+            for (int j = 0; j < 10; j++) {
+                var c1 = new PersonDTO();
+                c1.setName("C" + j);
+                c1.setAge(j);
+                c1.setParentDTOId(p1.getId());
+                personJPARepository.save(c1);
+
+            }
+
+            System.out.println(p1.getPersonList().size());
+        }
+
+        System.out.println("*save time " + (System.currentTimeMillis() - start));
+    }
+
+
 
     @GetMapping("/find1")
     public void find1() throws InterruptedException {
@@ -291,4 +293,7 @@ public class Controller {
     public void newEmployee(@RequestBody Greeting newEmployee) {
         //myRepository.save(newEmployee);
     }
+
+
+     */
 }

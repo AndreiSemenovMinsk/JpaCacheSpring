@@ -16,6 +16,7 @@ public class DTO {
 
     private int mark;// = ThreadLocalRandom.current().nextInt();
     private List<Object> fieldValues;
+    private List<String> methodKeys;
 
     public DTO () {
         mark = id;

@@ -1,0 +1,118 @@
+databaseChangeLog:
+  - changeSet:
+      id: 3-mail_service
+      author: a.semenov
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: action_pk
+                    nullable: false
+              - column:
+                  name: time
+                  type: datetime
+                  constraints:
+                    nullable: false
+              - column:
+                  name: accommodate_sum
+                  type: bit(1)
+              - column:
+                  name: active
+                  type: bit(1)
+              - column:
+                  name: description
+                  type: varchar(255)
+              - column:
+                  name: level_rate_previous_purchase_list
+                  type: varchar(255)
+              - column:
+                  name: level_sum_string
+                  type: varchar(255)
+              - column:
+                  name: name
+                  type: varchar(255)
+              - column:
+                  name: number_coupon
+                  type: int(11)
+              - column:
+                  name: rate_friend_future_purchase
+                  type: int(11)
+              - column:
+                  name: rate_future_purchase
+                  type: int(11)
+              - column:
+                  name: toward_friend
+                  type: bit(1)
+              - column:
+                  name: type
+                  type: varchar(255)
+              - column:
+                  name: product_source_id
+                  type: int(11)
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_product_source_id
+                    references: abstract_group_entity(id)
+              - column:
+                  name: product_target_id
+                  type: int(11)
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_product_target_id
+                    references: abstract_group_entity(id)
+              - column:
+                  name: shop_id
+                  type: int(11)
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_shop_id
+                    references: shop(id)
+            tableName: action
+        - createIndex:
+            #            clustered:  true
+            columns:
+              - column:
+                  descending:  true
+                  name:  call_name
+              - column:
+                  descending:  true
+                  name:  users_id
+            indexName:  UC_LEVEL_COL_USER_CALL_NAME
+            schemaName:  public
+            tableName:  action
+            unique:  true
+        - createIndex:
+            #            clustered:  true
+            columns:
+              - column:
+                  descending:  true
+                  name:  call_name
+            indexName:  IDX_LEVEL_COL_CALLNAME
+            schemaName:  public
+            tableName:  action
+            unique:  true
+        - createIndex:
+            #            clustered:  true
+            columns:
+              - column:
+                  descending:  true
+                  name:  users_id
+            indexName:  IDX_LEVEL_COL_USER
+            schemaName:  public
+            tableName:  action
+            unique:  true
+        - createIndex:
+            #            clustered:  true
+            columns:
+              - column:
+                  descending:  true
+                  name:  parent_level_id
+            indexName:  IDX_LEVEL_COL_PARENTLEVEL
+            schemaName:  public
+            tableName:  action
+            unique:  true
